@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta name="description" content="حنان بوتيك - مجموعة صيفية فاخرة للموضة الرياضية الأنيقة" />
+  <meta name="theme-color" content="#07070B" />
+  <title>حنان بوتيك - Hanen Boutique</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#07070B;
+      --bg2:#0B1020;
+      --panel:rgba(255,255,255,.06);
+      --panel-2:rgba(255,255,255,.09);
+      --stroke:rgba(255,255,255,.11);
+      --text:#F8F8FA;
+      --muted:#B8BAC7;
+      --gold:#F5D77B;
+      --success:#19C37D;
+      --danger:#FF5B5B;
+      --madrid:#f4f4f4;
+      --brazil:#FFD93D;
+      --barca:#2B4BFF;
+      --barca2:#C9243F;
+      --shadow: 0 20px 80px rgba(0,0,0,.38);
+      --radius: 28px;
+      --radius-sm: 18px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:
+        radial-gradient(circle at 20% 20%, rgba(245,215,123,.12), transparent 32%),
+        radial-gradient(circle at 80% 18%, rgba(43,75,255,.14), transparent 28%),
+        radial-gradient(circle at 60% 80%, rgba(201,36,63,.10), transparent 26%),
+        linear-gradient(180deg, var(--bg) 0%, #040406 100%);
+      color:var(--text);
+      font-family:'Inter','Cairo',Arial,sans-serif;
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    h1,h2,h3,h4,.brand,.headline{font-family:'Poppins','Cairo',sans-serif}
+    a{text-decoration:none;color:inherit}
+    button,input,select,textarea{font:inherit}
+    ::selection{background:rgba(245,215,123,.28);color:#fff}
+
+    .noise{
+      position:fixed;inset:0;pointer-events:none;opacity:.035;z-index:1;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .container{width:min(1180px, calc(100% - 32px));margin-inline:auto;position:relative;z-index:2}
+    .glass{background:var(--panel);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--stroke);box-shadow:var(--shadow)}
+    .glass-strong{background:var(--panel-2);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.14)}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid rgba(245,215,123,.22);background:linear-gradient(135deg, rgba(245,215,123,.12), rgba(255,255,255,.04));color:var(--gold);font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:16px 24px;border-radius:999px;border:0;cursor:pointer;
+      font-weight:800;letter-spacing:.01em;transition:transform .35s cubic-bezier(.2,.9,.2,1), box-shadow .35s, filter .35s;
+      will-change:transform;
+    }
+    .btn:hover{transform:translateY(-2px) scale(1.01)}
+    .btn-primary{
+      color:#1a1400;background:linear-gradient(135deg,#F5D77B 0%, #FFE9A7 45%, #E8C65F 100%);
+      box-shadow:0 18px 50px rgba(245,215,123,.22), inset 0 1px 0 rgba(255,255,255,.45);
+      position:relative;overflow:hidden;
+    }
+    .btn-primary:before{
+      content:"";position:absolute;inset:-40% -20%;background:linear-gradient(90deg, transparent, rgba(255,255,255,.42), transparent);
+      transform:translateX(-80%) rotate(12deg);animation:shine 4.2s ease-in-out infinite;
+    }
+    @keyframes shine{0%,55%{transform:translateX(-80%) rotate(12deg)}100%{transform:translateX(80%) rotate(12deg)}}
+
+    .btn-ghost{color:var(--text);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10)}
+
+    /* preloader */
+    .preloader{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:linear-gradient(180deg,#050507 0%, #090b14 100%);transition:opacity .55s ease, visibility .55s ease}
+    .preloader.hidden{opacity:0;visibility:hidden}
+    .preloader-card{text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px}
+    .preloader-logo{font-family:'Poppins';font-size:1.15rem;font-weight:900;letter-spacing:.34em;color:var(--gold)}
+    .preloader-bar{width:min(240px, 72vw);height:2px;border-radius:999px;background:rgba(255,255,255,.10);overflow:hidden}
+    .preloader-bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),#fff0b8);animation:load 1.5s ease forwards}
+    @keyframes load{to{width:100%}}
+
+    /* nav */
+    header{
+      position:fixed;top:0;left:0;right:0;z-index:1200;
+      padding:18px 0;transition:transform .35s ease, background .35s ease, border-color .35s ease;
+    }
+    header.scrolled{background:rgba(7,7,11,.72);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.08)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{font-size:1.05rem;font-weight:900;letter-spacing:.28em;color:var(--gold)}
+    .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* مسافة بين الصورة والاسم */
+}
+.brand-logo {
+  width: 55px;   /* حجم اللوجو */
+  height: 85px;
+  object-fit: contain;
+}
+    .nav-actions{display:flex;align-items:center;gap:10px}
+    .nav-pill{padding:11px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:var(--text);font-size:.82rem;font-weight:700}
+    .nav-cta{padding:11px 18px}
+
+    /* hero */
+    .lux-sound-btn {
+  position: absolute;
+
+  bottom: 590px;  /* هنا للأسفل */
+  right: 20px;   /* مازال في اليمين */
+
+  z-index: 20;
+
+  padding: 10px 16px;
+  border-radius: 50px;
+
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  color: #fff;
+  font-size: 13px;
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+    .hero{position:relative;min-height:100svh;display:grid;place-items:center;overflow:hidden}
+    .hero-video, .hero-media-fallback{
+      position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08);filter:blur(16px) saturate(1.08) contrast(1.02);transition:filter 1.4s cubic-bezier(.2,.9,.2,1), transform 1.4s cubic-bezier(.2,.9,.2,1);will-change:transform, filter;
+    }
+    .hero.loaded .hero-video, .hero.loaded .hero-media-fallback{filter:blur(0) saturate(1.06) contrast(1.02);transform:scale(1)}
+    .hero-overlay{position:absolute;inset:0;background:
+      linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.45) 42%, rgba(0,0,0,.88) 100%),
+      radial-gradient(circle at 50% 40%, rgba(245,215,123,.10), transparent 35%)}
+    .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);background-size:72px 72px;mask-image:radial-gradient(circle at center, black 35%, transparent 86%);opacity:.14;pointer-events:none}
+    .hero-content{position:relative;z-index:2;text-align:center;width:min(860px, calc(100% - 32px));padding-top:78px}
+    .hero-kicker{opacity:0;transform:translateY(18px) scale(.98);animation:rise .9s .15s cubic-bezier(.2,.9,.2,1) forwards}
+    .hero h1{font-size:clamp(2.35rem, 7.8vw, 5.4rem);line-height:1.02;letter-spacing:-.04em;margin:18px auto 16px;max-width:12ch;opacity:0;transform:translateY(26px);animation:rise .95s .32s cubic-bezier(.2,.9,.2,1) forwards;text-wrap:balance}
+    .hero p{font-size:clamp(1rem, 2.5vw, 1.2rem);color:var(--muted);max-width:42rem;margin-inline:auto;line-height:1.9;opacity:0;transform:translateY(22px);animation:rise .95s .52s cubic-bezier(.2,.9,.2,1) forwards}
+    .hero-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:30px;opacity:0;transform:translateY(22px);animation:rise .95s .70s cubic-bezier(.2,.9,.2,1) forwards}
+    @keyframes rise{to{opacity:1;transform:translateY(0)}}
+    .scroll-indicator{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;animation:fadeIn .8s 1.2s forwards}
+    .scroll-indicator span{font-size:.72rem;letter-spacing:.45em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+    .scroll-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 18px rgba(245,215,123,.8);animation:bounce 1.9s ease-in-out infinite}
+    @keyframes bounce{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(12px);opacity:.35}}
+    @keyframes fadeIn{to{opacity:1}}
+
+    /* sections */
+    .section{position:relative;padding:clamp(72px, 8vw, 120px) 0}
+    .section-title{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;margin-bottom:34px}
+    .section-title h2{font-size:clamp(1.8rem, 4.5vw, 3.2rem);line-height:1.1;letter-spacing:-.03em}
+    .section-title p{color:var(--muted);max-width:42rem;line-height:1.8}
+
+    .reveal{opacity:0;transform:translateY(32px) scale(.985);transition:opacity .85s cubic-bezier(.2,.9,.2,1), transform .85s cubic-bezier(.2,.9,.2,1)}
+    .reveal.visible{opacity:1;transform:translateY(0) scale(1)}
+    .reveal-delay-1{transition-delay:.08s}.reveal-delay-2{transition-delay:.16s}.reveal-delay-3{transition-delay:.24s}.reveal-delay-4{transition-delay:.32s}
+
+    /* collection */
+    .collection-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .product-card{position:relative;border-radius:var(--radius);overflow:hidden;cursor:pointer;min-height:500px;transform:translateZ(0);transition:transform .5s cubic-bezier(.2,.9,.2,1);background:#0d0f18}
+    .product-card:hover{transform:translateY(-6px)}
+    .product-card img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06);transition:transform 1.1s cubic-bezier(.2,.9,.2,1), filter .6s ease;filter:saturate(1.02) contrast(1.02)}
+    .product-card:hover img{transform:scale(1.12)}
+    .product-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(4,4,7,.06) 0%, rgba(4,4,7,.20) 30%, rgba(4,4,7,.88) 100%)}
+    .badge{position:absolute;top:18px;right:18px;z-index:2;padding:8px 13px;border-radius:999px;font-size:.68rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(10px)}
+    .badge.rm{color:var(--madrid)}.badge.br{color:#0d0d0d;background:rgba(255,217,61,.88)}.badge.bc{color:#fff;background:rgba(201,36,63,.85)}
+    .product-meta{position:absolute;inset:auto 0 0 0;z-index:2;padding:26px 22px 22px;display:grid;gap:8px}
+    .product-meta h3{font-size:1.2rem;line-height:1.25;transform:translateY(10px);opacity:0;transition:.6s cubic-bezier(.2,.9,.2,1)}
+    .product-meta p{font-size:.92rem;color:rgba(255,255,255,.75);line-height:1.8;transform:translateY(10px);opacity:0;transition:.6s cubic-bezier(.2,.9,.2,1) .08s}
+    .product-meta .price{display:flex;align-items:center;gap:10px;margin-top:6px;transform:translateY(10px);opacity:0;transition:.6s cubic-bezier(.2,.9,.2,1) .14s}
+    .product-card:hover .product-meta h3,.product-card:hover .product-meta p,.product-card:hover .product-meta .price{transform:translateY(0);opacity:1}
+    .price strong{font-size:1.1rem;color:var(--gold)}
+    .price span{font-size:.86rem;color:rgba(255,255,255,.5);text-decoration:line-through}
+
+    /* story sections */
+    .story{display:grid;gap:18px}
+    .story-panel{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:center;padding:18px;border-radius:var(--radius);overflow:hidden;min-height:420px;background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.10);box-shadow:var(--shadow)}
+    .story-panel.reverse{grid-template-columns:.9fr 1.1fr}
+    .story-media{position:relative;height:100%;min-height:380px;border-radius:22px;overflow:hidden}
+    .story-media img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06);transition:transform 1.1s cubic-bezier(.2,.9,.2,1), filter 1.1s cubic-bezier(.2,.9,.2,1)}
+    .story-panel:hover .story-media img{transform:scale(1.12)}
+    .story-media:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, transparent 10%, rgba(0,0,0,.28) 52%, rgba(0,0,0,.72) 100%)}
+    .story-copy{padding:10px 12px}
+    .story-copy .chip{margin-bottom:16px}
+    .story-copy h3{font-size:clamp(1.7rem, 3.4vw, 2.9rem);line-height:1.08;margin-bottom:14px}
+    .story-copy p{color:var(--muted);line-height:1.95;margin-bottom:22px;max-width:34rem}
+
+    /* features */
+    .features-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+    .feature{padding:24px;border-radius:22px;min-height:170px;transition:transform .45s cubic-bezier(.2,.9,.2,1), border-color .45s;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08)}
+    .feature:hover{transform:translateY(-7px);border-color:rgba(245,215,123,.28)}
+    .feature .icon{width:54px;height:54px;border-radius:18px;display:grid;place-items:center;margin-bottom:16px;background:linear-gradient(135deg, rgba(245,215,123,.16), rgba(255,255,255,.05));border:1px solid rgba(245,215,123,.20);color:var(--gold);font-size:1.2rem}
+    .feature h4{font-size:1rem;margin-bottom:8px}
+    .feature p{color:var(--muted);font-size:.92rem;line-height:1.75}
+
+    /* promo */
+    .promo-wrap{position:relative;overflow:hidden;border-radius:34px;padding:clamp(24px, 4vw, 42px);background:linear-gradient(135deg, rgba(245,215,123,.10), rgba(255,255,255,.04) 32%, rgba(43,75,255,.10) 100%);border:1px solid rgba(255,255,255,.10);box-shadow:var(--shadow)}
+    .promo-wrap:before{content:"";position:absolute;inset:-30% -20%;background:radial-gradient(circle at center, rgba(245,215,123,.16), transparent 36%);animation:floatGlow 8s ease-in-out infinite}
+    @keyframes floatGlow{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+    .promo-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:center;position:relative;z-index:2}
+    .promo-left h2{font-size:clamp(2rem, 4vw, 3.2rem);line-height:1.06;margin-bottom:12px}
+    .promo-left p{color:var(--muted);line-height:1.85;max-width:36rem}
+    .prices{display:flex;align-items:end;gap:14px;flex-wrap:wrap;margin:22px 0 16px}
+    .old-price{position:relative;color:#aab0bd;font-size:1.2rem;font-weight:700}
+    .old-price:after{content:"";position:absolute;left:-3px;right:-3px;top:50%;height:2px;background:var(--danger);transform:translateY(-50%)}
+    .new-price{font-size:clamp(2.4rem, 6vw, 4.5rem);font-weight:900;letter-spacing:-.04em;color:var(--gold);text-shadow:0 0 26px rgba(245,215,123,.16)}
+    .promo-right{display:grid;gap:14px}
+    .urgency-card{padding:18px;border-radius:22px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+    .countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .timer-box{padding:16px 12px;border-radius:18px;text-align:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+    .timer-box strong{display:block;font-family:'Poppins';font-size:1.45rem;line-height:1;color:var(--gold)}
+    .timer-box span{display:block;margin-top:7px;font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+    .stock-row{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:10px}
+    .stock-bar{height:8px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.08)}
+    .stock-fill{height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#FF5B5B, #FFB156);transition:width 1.8s cubic-bezier(.2,.9,.2,1)}
+
+    /* form */
+    .order-wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+    .order-card{padding:24px;border-radius:30px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
+    .order-card h2{font-size:clamp(1.8rem, 4vw, 2.8rem);line-height:1.1;margin-bottom:10px}
+    .order-card p{color:var(--muted);line-height:1.8;margin-bottom:18px}
+    .form{display:grid;gap:14px}
+    .field{display:grid;gap:8px}
+    .field label{font-size:.85rem;color:#d8dbe6;font-weight:700}
+    .field input,.field select{
+      width:100%;padding:16px 16px;border-radius:18px;border:1px solid rgba(255,255,255,.10);outline:0;
+      background:rgba(255,255,255,.05);color:var(--text);transition:border-color .25s, box-shadow .25s, transform .25s;
+    }
+    .field input::placeholder{color:#8e93a5}
+    .field input:focus,.field select:focus{border-color:rgba(245,215,123,.55);box-shadow:0 0 0 4px rgba(245,215,123,.09)}
+    .field.error input,.field.error select{border-color:rgba(255,91,91,.75);box-shadow:0 0 0 4px rgba(255,91,91,.08)}
+    .error-text{font-size:.75rem;color:var(--danger);display:none}
+    .field.error .error-text{display:block}
+    .success{display:none;padding:30px 20px;text-align:center}
+    .success .check{width:84px;height:84px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;background:rgba(25,195,125,.12);color:var(--success);font-size:2rem}
+
+    .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .trust{padding:18px;border-radius:20px;text-align:center;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);transition:transform .35s cubic-bezier(.2,.9,.2,1)}
+    .trust:hover{transform:translateY(-4px)}
+    .trust i{font-size:1.3rem;color:var(--gold);margin-bottom:10px}
+    .trust p{font-size:.82rem;line-height:1.6}
+
+    footer{padding:26px 0 100px;color:rgba(255,255,255,.52);text-align:center}
+
+    /* modal / alerts */
+    .modal,.exit-modal{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.78);backdrop-filter:blur(12px)}
+    .modal.active,.exit-modal.active{display:flex}
+    .modal-card,.exit-card{width:min(980px,100%);border-radius:30px;overflow:hidden;background:#0B0D15;border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow)}
+    .modal-head{position:relative;min-height:300px;display:grid;place-items:end start;background:linear-gradient(135deg, #171a27, #0f1118)}
+    .modal-head img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.03) saturate(1.04);transform:scale(1.06)}
+    .modal-head:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.72) 84%)}
+    .modal-head-content{position:relative;z-index:2;padding:22px;display:grid;gap:8px}
+    .modal-head h3{font-size:1.9rem;line-height:1.1}
+    .modal-body{padding:22px;display:grid;grid-template-columns:1.05fr .95fr;gap:18px}
+    .product-gallery{display:grid;gap:12px}
+    .main-image{border-radius:22px;overflow:hidden;height:100%;min-height:430px;background:#111;position:relative}
+    .main-image img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.05);transition:transform .7s cubic-bezier(.2,.9,.2,1)}
+    .main-image:hover img{transform:scale(1.12)}
+    .thumbs{display:flex;gap:10px;flex-wrap:wrap}
+    .thumbs img{width:66px;height:66px;object-fit:cover;border-radius:14px;border:2px solid transparent;cursor:pointer;opacity:.82;transition:transform .25s, opacity .25s, border-color .25s}
+    .thumbs img.active{border-color:var(--gold);opacity:1;transform:translateY(-2px)}
+    .meta{display:grid;gap:14px;align-content:start}
+    .meta .price-line{display:flex;align-items:end;gap:12px;flex-wrap:wrap}
+    .meta .price-line strong{font-size:1.8rem;color:var(--gold)}
+    .meta .price-line span{color:var(--muted);text-decoration:line-through}
+    .sizes,.colors{display:flex;flex-wrap:wrap;gap:8px}
+    .pill-btn{padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.04);color:var(--text);cursor:pointer;transition:transform .2s, border-color .2s, background .2s}
+    .pill-btn:hover{transform:translateY(-2px)}
+    .pill-btn.active{border-color:rgba(245,215,123,.52);background:rgba(245,215,123,.10);color:var(--gold)}
+    .close{position:absolute;top:14px;right:14px;width:42px;height:42px;border-radius:50%;border:0;background:rgba(255,255,255,.10);color:#fff;cursor:pointer;z-index:3}
+
+    .social-proof{
+      position:fixed;bottom:88px;left:14px;z-index:1100;max-width:320px;padding:14px 16px;border-radius:18px;
+      transform:translateX(-120%);transition:transform .6s cubic-bezier(.2,.9,.2,1);display:flex;gap:12px;align-items:center;
+    }
+    .social-proof.show{transform:translateX(0)}
+    .social-proof .icon{width:40px;height:40px;border-radius:12px;background:rgba(245,215,123,.12);display:grid;place-items:center;color:var(--gold);flex:0 0 auto}
+    .social-proof p{font-size:.88rem;line-height:1.5}
+    .social-proof small{display:block;color:rgba(255,255,255,.55);margin-top:2px}
+
+    .sticky-cta{
+      position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:1150;
+      display:none;min-width:min(360px, calc(100% - 24px));
+      padding:15px 18px;border-radius:999px;font-weight:900;letter-spacing:.01em;
+    }
+    .whatsapp{
+      position:fixed;right:18px;bottom:18px;z-index:1160;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;
+      background:#25D366;color:#fff;box-shadow:0 18px 40px rgba(37,211,102,.28);font-size:1.55rem;transition:transform .25s ease;animation:wa 4s ease-in-out infinite;
+    }
+    .whatsapp:hover{transform:scale(1.06)}
+    @keyframes wa{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+    /* responsive */
+    @media (max-width: 980px){
+      .collection-grid{grid-template-columns:1fr;}
+      .story-panel,.story-panel.reverse,.promo-grid,.order-wrap,.modal-body{grid-template-columns:1fr}
+      .features-grid,.trust-grid{grid-template-columns:repeat(2,1fr)}
+      .main-image{min-height:360px}
+      .product-card{min-height:420px}
+      .social-proof{bottom:142px}
+      .sticky-cta{display:inline-flex}
+    }
+    @media (max-width: 640px){
+      .nav-actions .nav-pill{display:none}
+      .hero-content{padding-top:68px}
+      .features-grid,.trust-grid{grid-template-columns:1fr}
+      .countdown{grid-template-columns:repeat(2,1fr)}
+      .product-card{min-height:390px}
+      .social-proof{max-width:250px}
+      .modal-body{padding:16px}
+      .modal-head h3{font-size:1.6rem}
+      .sticky-cta{min-width:calc(100% - 22px)}
+    }
+    @media (min-width: 981px){
+      .sticky-cta{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+
+  <div class="preloader" id="preloader">
+    <div class="preloader-card">
+      <div class="preloader-logo">HANAN BOUTIQUE</div>
+      <div class="preloader-bar"><span></span></div>
+    </div>
+  </div>
+
+  <header id="header">
+    <div class="container nav">
+      <div class="brand">HANAN</div>
+      <img src="assets/images/logo.png" alt="HANAN Logo" class="brand-logo">
+      <div class="nav-actions">
+        <div class="nav-pill">Summer Sport Chic</div>
+        <button class="btn btn-primary nav-cta" onclick="scrollToSection('order')">اطلبي الآن</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+   <section class="hero" id="hero">
+  
+  <video id="heroVideo" class="hero-video" autoplay muted loop playsinline>
+    <source src="assets/videos/lv_0_20260606013020.mp4" type="video/mp4">
+  </video>
+
+<div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
+
+  <!-- زر الصوت داخل الهيرو فقط -->
+  <button class="lux-sound-btn" id="soundBtn">
+    🔊 Sound
+  </button>
+
+      <div class="hero-content">
+        <span class="chip hero-kicker">Summer Drop 2025</span>
+        <h1>مجموعة الصيف الرياضية الأنيقة</h1>
+        <p>عبّري عن أسلوبك بطاقة صيفية جريئة مع قطع Sporty Chic فاخرة، مصممة لتبدو راقية على الشاطئ وفي الخروجات الصيفية.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="scrollToSection('collection')">اكتشفي المجموعة</button>
+          <button class="btn btn-ghost" onclick="scrollToSection('promo')">شوفي العرض</button>
+        </div>
+      </div>
+
+      <div class="scroll-indicator">
+        <span>Scroll</span>
+        <div class="scroll-dot"></div>
+      </div>
+    </section>
+
+    <section class="section" id="collection">
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="chip">Exclusive Collection</span>
+          <h2>ثلاثة أطقم، ثلاث شخصيات، نفس الإحساس الفاخر</h2>
+          <p>كل قطعة صممت لتكون مشهداً بصرياً بحد ذاتها: خامات خفيفة، ألوان أيقونية، ولمسة موشن ناعمة ترفع تجربة التمرير.</p>
+        </div>
+
+        <div class="collection-grid">
+          <article class="product-card glass reveal reveal-delay-1" onclick="openModal('madrid')">
+            <img src="assets/images/madrid2.webp" alt="طقم مستوحى من ريال مدريد" loading="lazy">
+            <span class="badge rm">Real Madrid</span>
+            <div class="product-meta">
+              <h3>طقم مستوحى من ريال مدريد</h3>
+              <p>اناقة نظيفة مع حضور قوي</p>
+              <div class="price"><strong>2000 DA</strong><span>2500 DA</span></div>
+            </div>
+          </article>
+
+          <article class="product-card glass reveal reveal-delay-2" onclick="openModal('brazil')">
+            <img src="assets/images/brazil.webp" alt="طقم مستوحى من البرازيل" loading="lazy">
+            <span class="badge br">Brazil</span>
+            <div class="product-meta">
+              <h3>طقم مستوحى من البرازيل</h3>
+              <p>أصفر / أخضر • طاقة صيفية وحيوية لافتة</p>
+              <div class="price"><strong>2000 DA</strong><span>2500 DA</span></div>
+            </div>
+          </article>
+
+          <article class="product-card glass reveal reveal-delay-3" onclick="openModal('barcelona')">
+            <img src="assets/images/Gemini_Generated_Image_iklp19iklp19iklp.png" alt="طقم مستوحى من برشلونة" loading="lazy">
+            <span class="badge bc">Barcelona</span>
+            <div class="product-meta">
+              <h3>طقم مستوحى من برشلونة</h3>
+              <p>أحمر / أزرق • تباين جريء بطابع شبابي</p>
+              <div class="price"><strong>2000 DA</strong><span>2500 DA</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+   <section class="section" id="style">
+  <div class="container">
+    
+    <div class="story">
+
+      <!-- Madrid -->
+      <div class="story-panel reveal">
+        <div class="story-media">
+          <img
+            src="assets/images/file_0000000050ec7243bcd162e51800ac0b.png"
+            alt="تفاصيل القماش"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="story-copy">
+          <span class="chip">Feel the Style</span>
+          <h3>Clean.<br>Pure.<br>Powerful.</h3>
+
+          <p>
+            مظهر نقي مع خطوط مرتبة ولمعة خفيفة تعطي انطباعاً فاخراً من أول نظرة.
+            الحركة هنا ليست زينة فقط، بل جزء من القصة المرئية.
+          </p>
+
+          <button
+            class="btn btn-primary"
+            onclick="openModal('madrid')"
+          >
+          </button>
+        </div>
+      </div>
+
+      <!-- Brazil -->
+      <div class="story-panel reverse reveal">
+        <div class="story-copy">
+          <span class="chip">Feel the Style</span>
+          <h3>Vibrant.<br>Bold.<br>Summer.</h3>
+
+          <p>
+            لون ذهبي متوهج مع خلفية تتنفس بحرارة الصيف.
+            هذا المشهد يرفع فضول التصفح ويحوّل كل تمريرة إلى تجربة بصرية مستقلة.
+          </p>
+
+          <button
+            class="btn btn-primary"
+            onclick="openModal('brazil')"
+          >
+          </button>
+        </div>
+
+        <div class="story-media">
+          <img
+            src="assets/images/file_00000000ee68720a8f663e4af5ceec3e.png"
+            
+            alt="أسلوب البرازيل"
+            loading="lazy"
+          >
+        </div>
+      </div>
+
+      <!-- Barcelona -->
+      <div class="story-panel reveal">
+        <div class="story-media">
+          <img
+            src="assets/images/file_00000000d83c71f4a9b50c18fae852de.png"
+            alt="أسلوب برشلونة"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="story-copy">
+          <span class="chip">Feel the Style</span>
+          <h3>Passion.<br>Fusion.<br>Style.</h3>
+
+          <p>
+            تصادم أنيق بين الأحمر والأزرق، مع لمسة ناعمة تمنح اللوك طاقة شبابية
+            تناسب الإنستغرام والخروجات الصيفية.
+          </p>
+
+          <button
+            class="btn btn-primary"
+            onclick="openModal('barcelona')"
+          >
+          </button>
+        </div>
+      
+</section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why">
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="chip">Premium Quality</span>
+          <h2>لماذا هذه المجموعة؟</h2>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature reveal reveal-delay-1">
+            <div class="icon"><i>✦</i></div>
+            <h4>قماش خفيف للصيف</h4>
+            <p>خامات مريحة تسمح بالتهوية وتبقى أنيقة مع حرارة الصيف.</p>
+          </div>
+          <div class="feature reveal reveal-delay-2">
+            <div class="icon"><i>↗</i></div>
+            <h4>مزيج رياضي وأنثوي</h4>
+            <p>توازن واضح بين الجاذبية الرياضية والأنوثة الراقية.</p>
+          </div>
+          <div class="feature reveal reveal-delay-3">
+            <div class="icon"><i>☀</i></div>
+            <h4>للشاطئ والنزهات الصيفية</h4>
+            <p>مناسبة للشاطئ، السهرات الخفيفة، والخروج اليومي.</p>
+          </div>
+          <div class="feature reveal reveal-delay-4">
+            <div class="icon"><i>◆</i></div>
+            <h4>إصدار محدود</h4>
+            <p>قطعة موسمية بكمية محدودة تعطي إحساساً بالندرة.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="promo">
+      <div class="container">
+        <div class="promo-wrap reveal">
+          <div class="promo-grid">
+            <div class="promo-left">
+              <span class="chip">تخفيض خاص لفترة محدودة</span>
+              <h2>عرض الصيف الخاص</h2>
+              <div class="prices">
+                <div class="old-price">2500 DA</div>
+                <div class="new-price">2000 DA</div>
+              </div>
+              <p>وفّري 500 دج على كل طلب مع تصميم مريح للنظر، متوازن بصرياً، ويشد الانتباه بدون إزعاج.</p>
+              <div class="hero-actions" style="justify-content:flex-start;margin-top:22px">
+                <button class="btn btn-primary" onclick="scrollToSection('order')">اطلبي الآن</button>
+                
+              </div>
+            </div>
+
+            <div class="promo-right">
+              <div class="urgency-card">
+                <div class="stock-row">
+                  <div>
+                    <div style="font-weight:800;margin-bottom:4px">إصدار صيفي محدود</div>
+                    <small style="color:var(--muted)">الكمية المتبقية على وشك النفاد</small>
+                  </div>
+                  <div style="color:var(--danger);font-weight:900">17 قطعة</div>
+                </div>
+                <div class="stock-bar"><div class="stock-fill" id="stockFill"></div></div>
+              </div>
+
+              <div class="urgency-card">
+                <div class="countdown">
+                  <div class="timer-box"><strong id="cdD">00</strong><span>Days</span></div>
+                  <div class="timer-box"><strong id="cdH">00</strong><span>Hours</span></div>
+                  <div class="timer-box"><strong id="cdM">00</strong><span>Minutes</span></div>
+                  <div class="timer-box"><strong id="cdS">00</strong><span>Seconds</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="order">
+      <div class="container">
+        <div class="order-wrap">
+          <div class="order-card reveal">
+            <span class="chip">Order Now</span>
+            <h2>اطلبي الآن قبل نفاذ الكمية</h2>
+            <p>املئي المعلومات التالية، وسنحوّلها مباشرة إلى رسالة WhatsApp جاهزة للتأكيد.</p>
+            <div class="trust-grid">
+              <div class="trust glass"><i>◉</i><p>الدفع عند الاستلام</p></div>
+              <div class="trust glass"><i>➜</i><p>توصيل سريع لكل الولايات</p></div>
+              <div class="trust glass"><i>✦</i><p>جودة ممتازة</p></div>
+              <div class="trust glass"><i>☎</i><p>خدمة زبائن متوفرة</p></div>
+            </div>
+          </div>
+
+          <div class="order-card reveal">
+            <form id="orderForm" class="form" novalidate>
+              <div class="field">
+                <label>الاسم الكامل</label>
+                <input name="fullname" type="text" placeholder="اكتبي اسمك الكامل" required minlength="3">
+                <div class="error-text">الاسم مطلوب ويجب أن يكون 3 أحرف على الأقل</div>
+              </div>
+              <div class="field">
+                <label>رقم الهاتف</label>
+                <input name="phone" type="tel" placeholder="07XXXXXXXX" required>
+                <div class="error-text">أدخلي رقم هاتف صحيح</div>
+              </div>
+              <div class="field">
+                <label>الولاية</label>
+                <select name="wilaya" required>
+                  <option value="">اختاري الولاية</option>
+                  <option>أدرار</option><option>الشلف</option><option>الأغواط</option><option>أم البواقي</option>
+                  <option>باتنة</option><option>بجاية</option><option>بسكرة</option><option>بشار</option>
+                  <option>البليدة</option><option>البويرة</option><option>تمنراست</option><option>تبسة</option>
+                  <option>تلمسان</option><option>تيارت</option><option>تيزي وزو</option><option>الجزائر</option>
+                  <option>الجلفة</option><option>جيجل</option><option>سطيف</option><option>سعيدة</option>
+                  <option>سكيكدة</option><option>سيدي بلعباس</option><option>عنابة</option><option>قالمة</option>
+                  <option>قسنطينة</option><option>المدية</option><option>مستغانم</option><option>المسيلة</option>
+                  <option>معسكر</option><option>ورقلة</option><option>وهران</option><option>البيض</option>
+                  <option>إليزي</option><option>برج بوعريريج</option><option>بومرداس</option><option>الطارف</option>
+                  <option>تندوف</option><option>تيسمسيلت</option><option>الوادي</option><option>خنشلة</option>
+                  <option>سوق أهراس</option><option>تيبازة</option><option>ميلة</option><option>عين الدفلى</option>
+                  <option>النعامة</option><option>عين تموشنت</option><option>غرداية</option><option>غليزان</option>
+                  <option>تيميمون</option><option>برج باجي مختار</option><option>أولاد جلال</option><option>بني عباس</option>
+                  <option>عين صالح</option><option>عين قزام</option><option>تقرت</option><option>جانت</option>
+                  <option>المغير</option><option>المنيعة</option>
+                </select>
+                <div class="error-text">اختاري الولاية</div>
+              </div>
+              <div class="field">
+                <label>العنوان الكامل</label>
+                <input name="address" type="text" placeholder="اكتبي العنوان بالتفصيل" required minlength="5">
+                <div class="error-text">العنوان مطلوب</div>
+              </div>
+              <div class="field">
+                <label>البريد الإلكتروني</label>
+                <input name="email" type="email" placeholder="example@email.com" required>
+                <div class="error-text">أدخلي بريد إلكتروني صحيح</div>
+              </div>
+              <button class="btn btn-primary" type="submit">أكدي طلبي الآن</button>
+            </form>
+
+            <div class="success" id="successState">
+              <div class="check">✓</div>
+              <h3 style="font-size:1.5rem;margin-bottom:8px">تم استلام طلبك بنجاح</h3>
+              <p style="color:var(--muted)">سنتواصل معك قريباً لتأكيد التفاصيل.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+     <div class="brand" style="margin-bottom:12px;text-align:center;width:100%;display:block;">🧕HANAN✨BOUTIQUE🛍</div>
+      <p>Premium summer sport chic fashion for the modern woman.</p>
+    </div>
+  </footer>
+
+  <div class="modal" id="modal">
+    <div class="modal-card">
+      <button class="close" onclick="closeModal()">✕</button>
+      <div class="modal-head">
+        <img id="modalHero" alt="">
+        <div class="modal-head-content">
+          <span class="chip" id="modalBadge">Collection</span>
+          <h3 id="modalTitle">Title</h3>
+          <div style="color:rgba(255,255,255,.78)" id="modalSubtitle"></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="product-gallery">
+          <div class="main-image"><img id="mainImg" alt=""></div>
+          <div class="thumbs" id="thumbs"></div>
+        </div>
+        <div class="meta">
+          <div class="price-line"><strong>2000 DA</strong><span>2500 DA</span></div>
+          <p id="modalDesc" style="color:var(--muted);line-height:1.9"></p>
+          <div>
+            <div style="font-weight:800;margin-bottom:10px">اختيار المقاسات</div>
+            <div class="sizes" id="sizeButtons"></div>
+          </div>
+          <div>
+            <div style="font-weight:800;margin-bottom:10px">اختيار اللون</div>
+            <div class="colors" id="colorButtons"></div>
+          </div>
+          <button class="btn btn-primary" onclick="closeModal();scrollToSection('order')">اطلبي الآن — 2000 DA</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="exit-modal" id="exitModal">
+    <div class="exit-card glass-strong" style="max-width:540px;padding:30px 24px;position:relative">
+      <button class="close" onclick="closeExit()">✕</button>
+      <div style="text-align:center;display:grid;gap:12px;justify-items:center">
+        <div style="width:70px;height:70px;border-radius:50%;display:grid;place-items:center;background:rgba(245,215,123,.12);color:var(--gold);font-size:1.5rem">✦</div>
+        <h3 style="font-size:1.65rem;line-height:1.2">انتظري… أي أسلوب يعبر عن صيفك؟</h3>
+        <p style="color:var(--muted);max-width:28rem;line-height:1.8">اختاري طريقتك المفضلة واكتشفي الطقم الذي يناسب شخصيتك.</p>
+        <div style="display:grid;gap:10px;width:100%">
+          <button class="btn btn-ghost" onclick="closeExit();openModal('madrid')">أسلوب ريال مدريد</button>
+          <button class="btn btn-ghost" onclick="closeExit();openModal('brazil')">أسلوب البرازيل</button>
+          <button class="btn btn-ghost" onclick="closeExit();openModal('barcelona')">أسلوب برشلونة</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="social-proof glass" id="socialProof">
+    <div class="icon">🛍</div>
+    <div>
+      <p id="proofText">تم طلب طقم البرازيل منذ قليل</p>
+      <small id="proofSub">قبل دقيقتين • وهران</small>
+    </div>
+  </div>
+
+  <button class="btn btn-primary sticky-cta" onclick="scrollToSection('orderForm')">اطلبي الآن</button>
+  
+  <a class="whatsapp" href="https://wa.me/213782260745?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%A7%D9%84%D9%85%D8%AC%D9%85%D9%88%D8%B9%D8%A9" target="_blank" aria-label="WhatsApp">✆</a>
+
+  <script>
+    const productData = {
+      madrid: {
+        badge: 'Real Madrid',
+        title: 'طقم مستوحى من ريال مدريد',
+        subtitle: 'أبيض / أسود • Clean & Powerful',
+        desc: ' طقم أنيق بخطوط نظيفة ولمسة فاخرة، يعطي إحساساً بالقوة والهدوء في نفس الوقت. مثالي للصيف، الشاطئ، وللخروج النهاري بطابع ناعم وجذاب وراقي.',
+        hero: 'assets/images/madrid1.webp',
+        images: [
+          'assets/images/madrid2.webp'
+        ],
+        
+      },
+      brazil: {
+        badge: 'Brazil',
+        title: 'طقم مستوحى من البرازيل',
+        subtitle: 'أصفر / أخضر • Vibrant Summer Energy',
+        desc: 'لون مشرق وحضور حيوي يجعل الطقم مناسباً للنهار والشاطئ واللقطات الصيفية. تصميم يخلق ضوءاً بصرياً جذاباً ويمنح إحساساً بالحرية والمرح.',
+        hero: 'assets/images/brazilya.jpg',
+        images: [
+          'assets/images/brazil.webp'
+        ],
+        colors:['Yellow Gold']
+      },
+      barcelona: {
+        badge: 'Barcelona',
+        title: 'طقم مستوحى من برشلونة',
+        subtitle: 'أحمر / أزرق • Passion & Fusion',
+        desc: 'تباين حاد ومنسجم في نفس الوقت، مع طاقة شبابية تليق بالحياة العصرية. هذا الستايل مناسب للأنوثة القوية واللوك الذي يلفت الأنظار من أول لحظة.',
+        hero: 'assets/images/1780693827954.jpg',
+        images: [
+          'assets/images/hero.jpg'
+        ],
+       
+        colors:['Red & Blue','Burgundy']
+      }
+    };
+
+    const modal = document.getElementById('modal');
+    const exitModal = document.getElementById('exitModal');
+    const hero = document.getElementById('hero');
+    const header = document.getElementById('header');
+    const stockFill = document.getElementById('stockFill');
+    const preloader = document.getElementById('preloader');
+    const successState = document.getElementById('successState');
+    const orderForm = document.getElementById('orderForm');
+
+    const proofs = [
+      ['تم طلب طقم البرازيل منذ قليل', 'قبل دقيقتين • وهران'],
+      ['زبونة من الجزائر اختارت ريال مدريد', 'قبل 5 دقائق • الجزائر'],
+      ['طقم برشلونة يحقق الطلبات بسرعة', 'قبل 8 دقائق • قسنطينة'],
+      ['الكمية تقترب من النفاد', '17 قطعة فقط • سارعِي بالطلب']
+    ];
+    let proofIndex = 0;
+
+    function scrollToSection(id){
+      document.getElementById(id)?.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    function openModal(key){
+      const d = productData[key];
+      document.getElementById('modalBadge').textContent = d.badge;
+      document.getElementById('modalTitle').textContent = d.title;
+      document.getElementById('modalSubtitle').textContent = d.subtitle;
+      document.getElementById('modalDesc').textContent = d.desc;
+      document.getElementById('modalHero').src = d.hero;
+      document.getElementById('mainImg').src = d.images[0];
+      buildThumbs(d.images, key);
+      buildPills('sizeButtons', d.sizes, true);
+      buildPills('colorButtons', d.colors, false);
+      modal.classList.add('active');
+      document.body.style.overflow='hidden';
+    }
+    function closeModal(){
+      modal.classList.remove('active');
+      document.body.style.overflow='';
+    }
+    function closeExit(){
+      exitModal.classList.remove('active');
+      document.body.style.overflow='';
+    }
+
+    function buildThumbs(images, key){
+      const thumbs = document.getElementById('thumbs');
+      thumbs.innerHTML = images.map((src, i) => `<img src="${src}" alt="" class="${i===0?'active':''}" onclick="switchMain('${key}', ${i}, this)" loading="lazy">`).join('');
+    }
+    function switchMain(key, index, el){
+      document.getElementById('mainImg').src = productData[key].images[index];
+      document.querySelectorAll('#thumbs img').forEach(img => img.classList.remove('active'));
+      el.classList.add('active');
+    }
+    function buildPills(id, items, isSize){
+      const root = document.getElementById(id);
+      root.innerHTML = items.map((item, i)=>`<button type="button" class="pill-btn ${i===0?'active':''}" onclick="selectPill(this)">${item}</button>`).join('');
+    }
+    function selectPill(btn){
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.pill-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function updateCountdown(){
+      const deadline = new Date();
+      deadline.setDate(deadline.getDate() + 3);
+      deadline.setHours(23,59,59,0);
+      const diff = Math.max(0, deadline - new Date());
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('cdD').textContent = String(d).padStart(2,'0');
+      document.getElementById('cdH').textContent = String(h).padStart(2,'0');
+      document.getElementById('cdM').textContent = String(m).padStart(2,'0');
+      document.getElementById('cdS').textContent = String(s).padStart(2,'0');
+    }
+
+    function showProof(){
+      const el = document.getElementById('socialProof');
+      const [text, sub] = proofs[proofIndex % proofs.length];
+      document.getElementById('proofText').textContent = text;
+      document.getElementById('proofSub').textContent = sub;
+      el.classList.add('show');
+      setTimeout(() => el.classList.remove('show'), 4200);
+      proofIndex++;
+    }
+
+    const revealObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          if(entry.target.contains(stockFill)){
+            setTimeout(()=> stockFill.style.width = '34%', 180);
+          }
+        }
+      });
+    }, {threshold:0.16, rootMargin:'0px 0px -80px 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+    window.addEventListener('scroll', ()=>{
+      const y = window.scrollY;
+      if(y > 70) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+      if(y > 620 && window.innerWidth < 981){ document.querySelector('.sticky-cta').style.display = 'inline-flex'; }
+      if(y <= 620 || window.innerWidth >= 981){ document.querySelector('.sticky-cta').style.display = 'none'; }
+      hero.style.setProperty('--scrollY', y);
+    }, {passive:true});
+
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){ closeModal(); closeExit(); }
+    });
+
+    document.getElementById('modal').addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+    document.getElementById('exitModal').addEventListener('click', (e)=>{ if(e.target === exitModal) closeExit(); });
+
+    let exitShown = false;
+    document.addEventListener('mouseleave', (e)=>{
+      if(e.clientY <= 8 && !exitShown && !modal.classList.contains('active')){
+        exitShown = true;
+        exitModal.classList.add('active');
+        document.body.style.overflow='hidden';
+      }
+    });
+
+    orderForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      let valid = true;
+      const formData = new FormData(orderForm);
+      const fields = [...orderForm.querySelectorAll('.field')];
+      fields.forEach(f=>f.classList.remove('error'));
+
+      fields.forEach(field=>{
+        const input = field.querySelector('input, select');
+        const value = String(input.value || '').trim();
+        if(input.name === 'fullname' && value.length < 3){ field.classList.add('error'); valid = false; }
+        if(input.name === 'phone' && !/^0[5-7]\d{8}$/.test(value.replace(/\s+/g,''))){ field.classList.add('error'); valid = false; }
+        if(input.name === 'wilaya' && !value){ field.classList.add('error'); valid = false; }
+        if(input.name === 'address' && value.length < 5){ field.classList.add('error'); valid = false; }
+        if(input.name === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)){ field.classList.add('error'); valid = false; }
+      });
+
+      if(!valid) return;
+
+      orderForm.style.display = 'none';
+      successState.style.display = 'block';
+      const data = Object.fromEntries(formData);
+      const msg = `طلب جديد من Hanem Boutique\n\nالاسم: ${data.fullname}\nالهاتف: ${data.phone}\nالولاية: ${data.wilaya}\nالعنوان: ${data.address}\nالبريد: ${data.email}`;
+      setTimeout(()=>{ window.open(`https://wa.me/213782260745?text=${encodeURIComponent(msg)}`, '_blank'); }, 1200);
+    });
+
+    window.addEventListener('load', ()=>{
+      setTimeout(()=>{
+        preloader.classList.add('hidden');
+        hero.classList.add('loaded');
+      }, 1300);
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+      setInterval(showProof, 15000);
+      setTimeout(showProof, 8000);
+    });
+  </script>
+  <script src="assets/js/config.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+
+function enableSound() {
+  const video = document.getElementById("heroVideo");
+  if (video) {
+    video.muted = false;
+    video.volume = 1;
+    video.play();
+  }
+
+  // نحيد الأحداث بعد أول تشغيل
+  document.removeEventListener("click", enableSound);
+  document.removeEventListener("scroll", enableSound);
+}
+
+// تشغيل عند أول click
+document.addEventListener("click", enableSound, { once: true });
+
+// تشغيل عند أول scroll
+document.addEventListener("scroll", enableSound, { once: true, passive: true });
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("soundBtn");
+
+  if (!btn) return;
+
+  btn.addEventListener("click", () => {
+    const video = document.getElementById("heroVideo");
+
+    if (video) {
+      video.muted = false;
+      video.volume = 1;
+      video.play();
+    }
+
+    btn.style.opacity = "0";
+    btn.style.pointerEvents = "none";
+  });
+});
+</script>
+</body>
+</html>
