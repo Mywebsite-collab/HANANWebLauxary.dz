@@ -1,2 +1,0 @@
-# -.-
-Premium website Lauxary Fashion
