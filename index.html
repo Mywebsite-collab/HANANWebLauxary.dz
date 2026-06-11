@@ -908,7 +908,7 @@
         if(input.name === 'phone' && !/^0[5-7]\d{8}$/.test(value.replace(/\s+/g,''))){ field.classList.add('error'); valid = false; }
         if(input.name === 'wilaya' && !value){ field.classList.add('error'); valid = false; }
         if(input.name === 'address' && value.length < 5){ field.classList.add('error'); valid = false; }
-        { field.classList.add('error'); valid = false; }
+        if(input.name === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)){ field.classList.add('error'); valid = false; }
       });
 
       if(!valid) return;
@@ -916,12 +916,8 @@
       orderForm.style.display = 'none';
       successState.style.display = 'block';
       const data = Object.fromEntries(formData);
-      const msg = `طلب جديد من Hanane Boutique
-
-الاسم: ${data.fullname}
-الهاتف: ${data.phone}
-الولاية: ${data.wilaya}
-العنوان: ${data.address}`;
+      const msg = `طلب جديد من Hanem Boutique\n\nالاسم: ${data.fullname}\nالهاتف: ${data.phone}\nالولاية: ${data.wilaya}\nالعنوان: ${data.address}\nالبريد: ${data.email}`;
+      setTimeout(()=>{ window.open(`https://wa.me/213782260745?text=${encodeURIComponent(msg)}`, '_blank'); }, 1200);
     });
 
     window.addEventListener('load', ()=>{
