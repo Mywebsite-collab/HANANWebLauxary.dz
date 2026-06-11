@@ -907,11 +907,7 @@
         if(input.name === 'fullname' && value.length < 3){ field.classList.add('error'); valid = false; }
         if(input.name === 'phone' && !/^0[5-7]\d{8}$/.test(value.replace(/\s+/g,''))){ field.classList.add('error'); valid = false; }
         if(input.name === 'wilaya' && !value){ field.classList.add('error'); valid = false; }
-        if(input.name === 'address' && value.length < 5){ field.classList.add('error'); valid = false; }
-        if(input.name === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)){ field.classList.add('error'); valid = false; }
-      });
-
-      if(!valid) return;
+        if(input.name === 'address' && value.length < 5){ field.classList.add('error'); valid = false; };
 
       orderForm.style.display = 'none';
       successState.style.display = 'block';
