@@ -893,8 +893,7 @@
         document.body.style.overflow='hidden';
       }
     });
-
- orderForm.addEventListener('submit', async (e) => {
+orderForm.addEventListener('submit', async (e) => {
   e.preventDefault();
 
   let valid = true;
@@ -920,9 +919,10 @@
 
   const reference = "HB" + Date.now();
 
+  // ✅ payload المصحح
   const payload = {
-    orders: {
-      "0": {
+    orders: [
+      {
         reference: reference,
         nom_client: data.fullname,
         telephone: data.phone,
@@ -937,13 +937,13 @@
         stock: 1,
         quantite: "1",
         produit_a_recuperer: "",
-        boutique: "YOUR_BOUTIQUE_ID",
+        boutique: "Hanane boutique",
         type: "1",
         stop_desk: 0,
         weight: "1",
         gps_link: ""
       }
-    }
+    ]
   };
 
   try {
@@ -959,7 +959,13 @@
       }
     );
 
-    if (!res.ok) throw new Error("API Error");
+    // 🔥 قراءة الرد الحقيقي من السيرفر
+    const result = await res.text();
+    console.log("API RESPONSE:", result);
+
+    if (!res.ok) {
+      throw new Error(result);
+    }
 
     // ✅ نجاح الطلب
     orderForm.style.display = "none";
@@ -982,7 +988,7 @@
     }, 1200);
 
   } catch (err) {
-    console.error(err);
+    console.error("ERROR:", err);
     alert("حدث خطأ أثناء إرسال الطلب");
   }
 });
