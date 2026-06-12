@@ -894,31 +894,102 @@
       }
     });
 
-    orderForm.addEventListener('submit', (e)=>{
-      e.preventDefault();
-      let valid = true;
-      const formData = new FormData(orderForm);
-      const fields = [...orderForm.querySelectorAll('.field')];
-      fields.forEach(f=>f.classList.remove('error'));
+  orderForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-      fields.forEach(field=>{
-        const input = field.querySelector('input, select');
-        const value = String(input.value || '').trim();
-        if(input.name === 'fullname' && value.length < 3){ field.classList.add('error'); valid = false; }
-        if(input.name === 'phone' && !/^0[5-7]\d{8}$/.test(value.replace(/\s+/g,''))){ field.classList.add('error'); valid = false; }
-        if(input.name === 'wilaya' && !value){ field.classList.add('error'); valid = false; }
-        if(input.name === 'address' && value.length < 5){ field.classList.add('error'); valid = false; }
-      });
+  let valid = true;
+  const formData = new FormData(orderForm);
+  const fields = [...orderForm.querySelectorAll('.field')];
 
-      if(!valid) return;
+  fields.forEach(f => f.classList.remove('error'));
 
+  fields.forEach(field => {
+    const input = field.querySelector('input, select');
+    const value = String(input.value || '').trim();
+
+    if (input.name === 'fullname' && value.length < 3) valid = false;
+    if (input.name === 'phone' && !/^0[5-7]\d{8}$/.test(value.replace(/\s+/g, ''))) valid = false;
+    if (input.name === 'wilaya' && !value) valid = false;
+    if (input.name === 'address' && value.length < 5) valid = false;
+
+    if (!valid) field.classList.add('error');
+  });
+
+  if (!valid) return;
+
+  const reference = "HB" + Date.now();
+  const data = Object.fromEntries(formData);
+
+  const payload = {
+    orders: {
+      0: {
+        reference: reference,
+        nom_client: data.fullname,
+        telephone: data.phone,
+        adresse: data.address,
+        commune: data.wilaya,
+        code_wilaya: data.wilaya,
+        montant: "2500",
+        produit: "Hanane Boutique",
+        stock: 1,
+        quantite: "1",
+        boutique: "YOUR_BOUTIQUE_ID",
+        type: "1",
+        stop_desk: 0,
+        weight: "1"
+      }
+    }
+  };
+
+  try {
+    const res = await fetch("https://anderson-ecommerce.ecotrack.dz/api/v1/create/order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "c9PQCJOrKRl8sgK7oRppFGHl4mamEv3v2HRIeF24DfxxvBOS2A0DY1GAmOf7"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!res.ok) throw new Error("API Error");
+
+    await res.json();
+
+    // UI SUCCESS فقط بعد نجاح API
+    orderForm.style.display = "none";
+    successState.style.display = "block";
+
+    const msg = `🛍 طلب جديد تم تسجيله
+
+📌 المرجع: ${reference}
+👤 الاسم: ${data.fullname}
+📞 الهاتف: ${data.phone}
+📍 الولاية: ${data.wilaya}
+🏠 العنوان: ${data.address}
+💰 المبلغ: 2500 DA
+
+✔ تم تسجيل طلبك بنجاح`;
+
+    setTimeout(() => {
+      window.open(
+        "https://wa.me/213782260745?text=" + encodeURIComponent(msg),
+        "_blank"
+      );
+    }, 1000);
+
+  } catch (err) {
+    console.error(err);
+    alert("حدث خطأ أثناء إرسال الطلب");
+  }
+});
       orderForm.style.display = 'none';
       successState.style.display = 'block';
       const data = Object.fromEntries(formData);
-      const msg = `طلب جديد من Hanene Boutique\n\nالاسم: ${data.fullname}\nالهاتف: ${data.phone}\nالولاية: ${data.wilaya}\nالعنوان: ${data.address}`;
+      const msg = `طلب جديد من Hanane Boutique \n\nالاسم: ${data.fullname}\nالهاتف: ${data.phone}\nالولاية: ${data.wilaya}\nالعنوان: ${data.address}`;
 
       setTimeout(()=>{ window.open(`https://wa.me/213782260745?text=${encodeURIComponent(msg)}`, '_blank'); }, 1200);
-    });
+    })
+});
 
     window.addEventListener('load', ()=>{
       setTimeout(()=>{
