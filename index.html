@@ -893,105 +893,32 @@
         document.body.style.overflow='hidden';
       }
     });
-orderForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
 
-  let valid = true;
-  const formData = new FormData(orderForm);
-  const data = Object.fromEntries(formData);
+    orderForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      let valid = true;
+      const formData = new FormData(orderForm);
+      const fields = [...orderForm.querySelectorAll('.field')];
+      fields.forEach(f=>f.classList.remove('error'));
 
-  const fields = [...orderForm.querySelectorAll('.field')];
-  fields.forEach(f => f.classList.remove('error'));
+      fields.forEach(field=>{
+        const input = field.querySelector('input, select');
+        const value = String(input.value || '').trim();
+        if(input.name === 'fullname' && value.length < 3){ field.classList.add('error'); valid = false; }
+        if(input.name === 'phone' && !/^0[5-7]\d{8}$/.test(value.replace(/\s+/g,''))){ field.classList.add('error'); valid = false; }
+        if(input.name === 'wilaya' && !value){ field.classList.add('error'); valid = false; }
+        if(input.name === 'address' && value.length < 5){ field.classList.add('error'); valid = false; }
+      });
 
-  fields.forEach(field => {
-    const input = field.querySelector('input, select');
-    const value = String(input.value || '').trim();
+      if(!valid) return;
 
-    if (input.name === 'fullname' && value.length < 3) valid = false;
-    if (input.name === 'phone' && !/^0[5-7]\d{8}$/.test(value.replace(/\s+/g, ''))) valid = false;
-    if (input.name === 'wilaya' && !value) valid = false;
-    if (input.name === 'address' && value.length < 5) valid = false;
+      orderForm.style.display = 'none';
+      successState.style.display = 'block';
+      const data = Object.fromEntries(formData);
+      const msg = `طلب جديد من Hanem Boutique\n\nالاسم: ${data.fullname}\nالهاتف: ${data.phone}\nالولاية: ${data.wilaya}\nالعنوان: ${data.address}`;
 
-    if (!valid) field.classList.add('error');
-  });
-
-  if (!valid) return;
-
-  const reference = "HB" + Date.now();
-
-  // ✅ payload المصحح
-  const payload = {
-    orders: [
-      {
-        reference: reference,
-        nom_client: data.fullname,
-        telephone: data.phone,
-        telephone_2: "",
-        adresse: data.address,
-        code_postal: "",
-        commune: data.wilaya,
-        code_wilaya: data.wilaya,
-        montant: "2500",
-        remarque: "",
-        produit: "Hanane Boutique",
-        stock: 1,
-        quantite: "1",
-        produit_a_recuperer: "",
-        boutique: "Hanane boutique",
-        type: "1",
-        stop_desk: 0,
-        weight: "1",
-        gps_link: ""
-      }
-    ]
-  };
-
-  try {
-    const res = await fetch(
-      "https://anderson-ecommerce.ecotrack.dz/api/v1/create/order",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "c9PQCJOrKRl8sgK7oRppFGHl4mamEv3v2HRIeF24DfxxvBOS2A0DY1GAmOf7"
-        },
-        body: JSON.stringify(payload)
-      }
-    );
-
-    // 🔥 قراءة الرد الحقيقي من السيرفر
-    const result = await res.text();
-    console.log("API RESPONSE:", result);
-
-    if (!res.ok) {
-      throw new Error(result);
-    }
-
-    // ✅ نجاح الطلب
-    orderForm.style.display = "none";
-    successState.style.display = "block";
-
-    const msg = `🛍 طلب جديد
-
-📌 المرجع: ${reference}
-👤 الاسم: ${data.fullname}
-📞 الهاتف: ${data.phone}
-📍 الولاية: ${data.wilaya}
-🏠 العنوان: ${data.address}
-💰 المبلغ: 2500 DA`;
-
-    setTimeout(() => {
-      window.open(
-        "https://wa.me/213782260745?text=" + encodeURIComponent(msg),
-        "_blank"
-      );
-    }, 1200);
-
-  } catch (err) {
-    console.error("ERROR:", err);
-    alert("حدث خطأ أثناء إرسال الطلب");
-  }
-});
+      setTimeout(()=>{ window.open(`https://wa.me/213782260745?text=${encodeURIComponent(msg)}`, '_blank'); }, 1200);
+    });
 
     window.addEventListener('load', ()=>{
       setTimeout(()=>{
